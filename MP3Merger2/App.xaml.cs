@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MP3Merger2
+namespace MP3Merger
 {
     /// <summary>
     /// Interaction logic for App.xaml

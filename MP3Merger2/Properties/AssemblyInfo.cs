@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MP3Merger2")]
+[assembly: AssemblyTitle("MP3Merger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Honeywell")]
-[assembly: AssemblyProduct("MP3Merger2")]
+[assembly: AssemblyProduct("MP3Merger")]
 [assembly: AssemblyCopyright("Copyright © Honeywell 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

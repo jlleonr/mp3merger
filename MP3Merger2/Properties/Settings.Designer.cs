@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MP3Merger2.Properties
+namespace MP3Merger.Properties
 {
 
 
