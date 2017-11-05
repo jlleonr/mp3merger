@@ -1,27 +1,34 @@
-﻿<Window x:Class="MP3Merger.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MP3Merger2"
-        xmlns:views="clr-namespace:MP3Merger2.Views"
-        mc:Ignorable="d"
-        Title="MP3 Merger" Height="326.8" Width="391.806" >
-    <!-- Height="326.8" Width="391.806" -->
-
-    <Grid>
-        <views:MP3MergerView x:Name = "MP3MergerViewControl" Margin="3,0,3.6,-0.2"/>
-    </Grid>
-    <!--
+﻿<!--
+ /**************************************************************
+ * Module: MP3Merger.xaml                                      *
+ * Author: Jose L. Leon                                        *
+ * Copyright: 2016-2017                                        *
+ *                                                             *
+ * Description:                                                *
+ *  This module is responsible of the presentation layer.      *
+ *  logic associated with merging the MP3 files.               *
+ *                                                             *
+ * ************************************************************/
+ -->
+    
+    <UserControl x:Class="MP3Merger2.Views.MP3MergerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MP3Merger2.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="326.8" Width="379.417">
     <Grid Margin="0,0,-0.4,0.8" Background="#FF131423">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
         <Grid HorizontalAlignment="Left" Height="70" Margin="10,202,0,0" VerticalAlignment="Top" Width="366"/>
-        <Border Background="White"  Padding="1.5" CornerRadius="5" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="145" Margin="188,52,0,0" VerticalAlignment="Top" Width="178">
+        <Border Background="White"  Padding="1.5" CornerRadius="5" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="145" Margin="188,52,0,0" VerticalAlignment="Top" Width="181">
             <StackPanel Background="Black"/>
         </Border>
-        <Border Margin="10,218,19.6,17.6" Padding="1.5" CornerRadius="5" RenderTransformOrigin="0.5,0.5" Background="White">
+        <Border Margin="10,218,12.2,17.6" Padding="1.5" CornerRadius="5" RenderTransformOrigin="0.5,0.5" Background="White">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -35,7 +42,7 @@
         <GroupBox Header="Select MP3 Files to Merge" HorizontalAlignment="Left" Height="153" Margin="10,44,0,0" VerticalAlignment="Top" Width="166" Foreground="#FFD6D6D6" Background="#FF0B0B0B">
             <Image HorizontalAlignment="Left" Height="22" Margin="110,21,0,0" VerticalAlignment="Top" Width="27" OpacityMask="#FF0B0B0B" RenderTransformOrigin="0.644,2.9">
                 <Image.Source>
-                    <ImageSource>Resources/musical1600.png</ImageSource>
+                    <ImageSource>../Resources/musical1600.png</ImageSource>
                 </Image.Source>
             </Image>
         </GroupBox>
@@ -43,7 +50,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="23,69,0,0" TextWrapping="Wrap" Text="File #1:" VerticalAlignment="Top" Height="20" Width="86" Foreground="#FFF6DEDE" FontSize="10" FontFamily="Arial"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,107,0,0" TextWrapping="Wrap" Text="File #2:" VerticalAlignment="Top" Width="86" FontSize="10" FontFamily="Arial" Foreground="#FFF0E6E6"/>
 
-        <Button Content="Select" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="75" Height="17" FontSize="10" x:Name="btn1" Click="btn1_Click" >
+        <Button Content="Select" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="75" Height="17" FontSize="10" x:Name="btn1" Click="btn1_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -69,8 +76,11 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label Content="Path to File #1" HorizontalAlignment="Left" Margin="195,85,0,0" VerticalAlignment="Top" Width="167" Height="17" FontSize="7" x:Name="label1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black"/>
-        <Label Content="Path to File #2" HorizontalAlignment="Left" Margin="195,124,0,0" VerticalAlignment="Top" Width="167" Height="18" FontSize="7"  x:Name="label2" FontFamily="Arial" Foreground="Black" Background="White"/>
+        <Grid Name="MP3MergerViewControl">
+            <TextBox Text=""  HorizontalAlignment="Left" Margin="195,85,0,0" VerticalAlignment="Top" Width="167" Height="17" FontSize="10" x:Name="txtBox1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black" />
+            <TextBox Text="" HorizontalAlignment="Left" Margin="195,124,0,0" VerticalAlignment="Top" Width="167" Height="18" FontSize="10"  x:Name="txtBox2" FontFamily="Arial" Foreground="Black" Background="White"/>
+            <TextBox Text="" HorizontalAlignment="Left" Margin="195,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="10" FontFamily="Arial" x:Name="txtBox3" Foreground="Black" Background="White"/>
+        </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="23,147,0,0" TextWrapping="Wrap" Text="Output Dir / Name:" VerticalAlignment="Top" FontFamily="Arial" FontSize="10" Foreground="#FFFFF6F6"/>
         <Button Content="Output" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" x:Name="btn3" Click="btn3_Click">
             <Button.Effect>
@@ -85,8 +95,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label Content="Output Directory" HorizontalAlignment="Left" Margin="195,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="7" FontFamily="Arial" x:Name="label3" Foreground="Black" Background="White"/>
-        <Button Content="Mix" HorizontalAlignment="Left" Margin="101,233,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Click="btn4_Click" Height="18">
+        
+        <Button Content="Mix" HorizontalAlignment="Left" Margin="101,233,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -100,7 +110,7 @@
             </Button.Background>
         </Button>
         <Separator HorizontalAlignment="Left" Height="100" Margin="10,-20,0,0" VerticalAlignment="Top" Width="354" Background="White"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="195,233,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="Button_Click">
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="195,233,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="Button_Click" >
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -115,10 +125,13 @@
         </Button>
         <Image HorizontalAlignment="Left" Height="34" Margin="125,119,0,0" VerticalAlignment="Top" Width="23">
             <Image.Source>
-                Resources/musical1600.png
+                ../Resources/musical1600.png
             </Image.Source>
         </Image>
-        <Image HorizontalAlignment="Left" Height="29" Margin="126,161,0,0" VerticalAlignment="Top" Width="23" Source="Resources/folder.png"/>
+        <Image HorizontalAlignment="Left" Height="29" Margin="126,161,0,0" VerticalAlignment="Top" Width="23">
+            <Image.Source>
+                ../Resources/folder.png
+            </Image.Source>
+        </Image>
     </Grid>
-    -->
-</Window>
+</UserControl>

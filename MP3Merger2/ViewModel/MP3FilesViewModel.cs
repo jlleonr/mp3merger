@@ -1,100 +1,98 @@
-﻿using Microsoft.Win32;
-using MP3Merger1.ViewModel;
+﻿/**************************************************************
+ * Module: MP3FilesViewModel.cs                               *
+ * Author: Jose L. Leon                                       *
+ * Copyright: 2016-2017                                       *
+ *                                                            *
+ * Description:                                               *
+ *  This module is responsible of accessing the business      *
+ *  logic associated with merging the MP3 files.              *
+ *                                                            *
+ * ************************************************************/
+
+using Microsoft.Win32;
+using MP3Merger1.Model;
+using NAudio.Lame;
+using NAudio.Wave;
+using System;
+using System.IO;
 using System.Windows;
 
-namespace MP3Merger
+namespace MP3Merger1.ViewModel
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// ViewModel component
     /// </summary>
-    public partial class MainWindow : Window
+    class MP3FilesViewModel
     {
-        /*
-        string inputFile1;
-        string inputFile2;
-        string outputFile;
-        */
-        public MainWindow()
-        {
-            /*
-            inputFile1 = "";
-            inputFile2 = "";
-            outputFile = "";
-                        */
-            InitializeComponent();
+        private const string initF1 = "Path to file #1";
+        private const string initF2 = "Path to file #2";
+        private const string initOutDir = "Output Directory";
 
+        public MP3FilesModel MP3Files { get; private set; }
+
+        /// <summary>
+        /// Set initial values to the Model properties,
+        /// since they will be binded to the UI the idea is to show
+        /// an initial text in the TextBox.
+        /// </summary>
+        public MP3FilesViewModel()
+        {
+            MP3Files = new MP3FilesModel()
+            {
+                FileName1 = initF1,
+                FileName2 = initF2,
+                OutputDirectory = initOutDir
+            };
         }
-        /*
-        private void MP3MergerViewControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            mp3FilesVMObj = new MP3FilesViewModel();
-            MP3MergerViewControl.DataContext = mp3FilesVMObj;
 
-            MP3MergerViewControl.txtBox1.Text = mp3FilesVMObj.MP3Files.FileName1;
-            MP3MergerViewControl.txtBox2.Text = mp3FilesVMObj.MP3Files.FileName2;
-            MP3MergerViewControl.txtBox3.Text = mp3FilesVMObj.MP3Files.OutputDirectory;
-        }
-        */
-
-        private void btn1_Click(object sender, RoutedEventArgs e)
+        public void OnSetFile1()
         {
-            /*
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "MP3 files (*.mp3)|*.mp3";
             if (openFileDialog1.ShowDialog() == true)
             {
-                mp3FilesVMObj.MP3Files.FileName1 = openFileDialog1.FileName;
-                //inputFile1 = openFileDialog1.FileName;
+                MP3Files.FileName1 = openFileDialog1.FileName;
             }
-            */
-
         }
 
-        private void btn2_Click(object sender, RoutedEventArgs e)
+        public void OnSetFile2()
         {
-/*
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
             openFileDialog2.Filter = "MP3 files (*.mp3)|*.mp3";
             if (openFileDialog2.ShowDialog() == true)
             {
-                mp3FilesVMObj.MP3Files.FileName1 = openFileDialog2.FileName;
-                //inputFile2 = openFileDialog2.FileName;
+                MP3Files.FileName2 = openFileDialog2.FileName;
             }
-            */
         }
 
-        private void btn3_Click(object sender, RoutedEventArgs e)
+        public void OnSetOutDir()
         {
-            /*
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "MP3 files (*.mp3)|*.mp3";
             saveFileDialog.DefaultExt = "mp3";
             saveFileDialog.AddExtension = true;
             if (saveFileDialog.ShowDialog() == true)
             {
-                label3.Content = saveFileDialog.FileName;
-                outputFile = saveFileDialog.FileName;
+                MP3Files.OutputDirectory = saveFileDialog.FileName;
             }
-            */
-
         }
 
-        public void btn4_Click(object sender, RoutedEventArgs e)
+        public void OnMix()
         {
-            /*
-            if (!(string.IsNullOrEmpty(inputFile1) 
-                || string.IsNullOrEmpty(inputFile2) 
-                || string.IsNullOrEmpty(outputFile)))
+
+            if ((string.IsNullOrEmpty(MP3Files.FileName1) || MP3Files.FileName1.Equals(initF1))
+                || (string.IsNullOrEmpty(MP3Files.FileName2) || MP3Files.FileName2.Equals(initF2))
+                || (string.IsNullOrEmpty(MP3Files.OutputDirectory) || MP3Files.OutputDirectory.Equals(initOutDir)))
             {
-                this.mp3Merger();
+                MessageBox.Show("Select two mp3 files and an output directory first.");
+                return;
             }
-            */
+            mp3Merger();
         }
 
         private void mp3Merger()
         {
-            /*
-            var fileA = new AudioFileReader(inputFile1);
+            var fileA = new AudioFileReader(MP3Files.FileName1);
 
             // Calculate our buffer size, since we're normalizing our samples to floats
             // we'll need to account for that by dividing the file's audio byte count
@@ -105,7 +103,7 @@ namespace MP3Merger
             fileA.Read(bufferA, 0, bufferA.Length);
 
             // Do it all over again for the other file.
-            var fileB = new AudioFileReader(inputFile2);
+            var fileB = new AudioFileReader(MP3Files.FileName2);
             var bufferB = new float[fileB.Length / (fileB.WaveFormat.BitsPerSample / 8)];
             fileB.Read(bufferB, 0, bufferB.Length);
 
@@ -147,36 +145,24 @@ namespace MP3Merger
                 ms.Seek(0, SeekOrigin.Begin);
                 final = ms.ToArray();             
             }
-            convertWavStreamToMp3File(outputFile, final);
+            convertWavStreamToMp3File(MP3Files.OutputDirectory, final);
             MessageBox.Show("Finished");
-            Close();
-            */
         }
 
-        public static void convertWavStreamToMp3File(string outputFile, byte[] waveFile)
+        private static void convertWavStreamToMp3File(string outputFile, byte[] waveFile)
         {
-            /*
             using (var ms = new MemoryStream(waveFile))
             using (var wfr = new WaveFileReader(ms))
             using (var wtr = new LameMP3FileWriter(outputFile, wfr.WaveFormat, LAMEPreset.VBR_100))
             {
                 wfr.CopyTo(wtr);
             }
-            */
         }
 
-        public void saveToDisk(byte[] mp3File, string destinationFile)
+        private void saveToDisk(byte[] mp3File, string destinationFile)
         {
-            /*
             File.WriteAllBytes(destinationFile, mp3File);
-            */
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            Close();
-            */
-        }
     }
 }
