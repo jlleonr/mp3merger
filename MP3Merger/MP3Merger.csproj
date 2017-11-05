@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\MergeService.cs" />
     <Compile Include="ViewModel\MP3FilesViewModel.cs" />
     <Compile Include="Views\MP3MergerView.xaml.cs">
       <DependentUpon>MP3MergerView.xaml</DependentUpon>
