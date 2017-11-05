@@ -43,7 +43,7 @@ namespace MP3Merger2.Views
 
         private void btn4_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mp3FilesVMObj.OnMix();
+            mp3FilesVMObj.OnMerge();
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

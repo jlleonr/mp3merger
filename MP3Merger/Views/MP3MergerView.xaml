@@ -46,7 +46,13 @@
                 </StackPanel.Background>
             </StackPanel>
         </Border>
-        <GroupBox Header="Select MP3 Files to Merge" HorizontalAlignment="Left" Height="153" Margin="10,44,0,0" VerticalAlignment="Top" Width="166" Foreground="#FFD6D6D6" Background="#FF0B0B0B">
+        <GroupBox Header="Select MP3 Files to Merge" HorizontalAlignment="Left" Height="153" Margin="10,44,0,0" VerticalAlignment="Top" Width="166" Foreground="#FFD6D6D6">
+            <GroupBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF181818"/>
+                </RadialGradientBrush>
+            </GroupBox.Background>
             <Image HorizontalAlignment="Left" Height="22" Margin="110,21,0,0" VerticalAlignment="Top" Width="27" OpacityMask="#FF0B0B0B" RenderTransformOrigin="0.644,2.9">
                 <Image.Source>
                     <ImageSource>../Resources/musical1600.png</ImageSource>
@@ -83,11 +89,6 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Grid Name="MP3MergerViewControl">
-            <TextBox Text=""  HorizontalAlignment="Left" Margin="195,85,0,0" VerticalAlignment="Top" Width="167" Height="17" FontSize="10" x:Name="txtBox1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black" />
-            <TextBox Text="" HorizontalAlignment="Left" Margin="195,124,0,0" VerticalAlignment="Top" Width="167" Height="18" FontSize="10"  x:Name="txtBox2" FontFamily="Arial" Foreground="Black" Background="White"/>
-            <TextBox Text="" HorizontalAlignment="Left" Margin="195,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="10" FontFamily="Arial" x:Name="txtBox3" Foreground="Black" Background="White"/>
-        </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="23,147,0,0" TextWrapping="Wrap" Text="Output Dir / Name:" VerticalAlignment="Top" FontFamily="Arial" FontSize="10" Foreground="#FFFFF6F6"/>
         <Button Content="Output" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" x:Name="btn3" Click="btn3_Click">
             <Button.Effect>
@@ -103,7 +104,7 @@
             </Button.Background>
         </Button>
 
-        <Button Content="Mix" HorizontalAlignment="Left" Margin="103,267,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
+        <Button Content="Merge" HorizontalAlignment="Left" Margin="103,267,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -132,13 +133,24 @@
         </Button>
         <Image HorizontalAlignment="Left" Height="34" Margin="125,119,0,0" VerticalAlignment="Top" Width="23">
             <Image.Source>
-                ../Resources/musical1600.png
+                <ImageSource>../Resources/musical1600.png</ImageSource>
             </Image.Source>
         </Image>
         <Image HorizontalAlignment="Left" Height="29" Margin="126,161,0,0" VerticalAlignment="Top" Width="23">
             <Image.Source>
-                ../Resources/folder.png
+                <ImageSource>../Resources/folder.png</ImageSource>
             </Image.Source>
         </Image>
+        <Grid x:Name="MP3MergerViewControl">
+            <StackPanel Margin="195,85,12.4,256.4" Orientation="Vertical">
+                <TextBox Text=""  HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="17" FontSize="10" x:Name="txtBox1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black" />
+            </StackPanel>
+            <StackPanel Margin="195,124,12.4,216.4" Orientation="Vertical">
+                <TextBox Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="18" FontSize="10"  x:Name="txtBox2" FontFamily="Arial" Foreground="Black" Background="White"/>
+            </StackPanel>
+            <StackPanel Margin="195,164,12.4,176.4" Orientation="Vertical">
+                <TextBox Text="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="10" FontFamily="Arial" x:Name="txtBox3" Foreground="Black" Background="White"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
