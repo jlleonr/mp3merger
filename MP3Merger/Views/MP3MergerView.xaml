@@ -10,15 +10,14 @@
  *                                                             *
  * ************************************************************/
  -->
-    
-    <UserControl x:Class="MP3Merger2.Views.MP3MergerView"
+
+<UserControl x:Class="MP3Merger2.Views.MP3MergerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MP3Merger2.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="326.8" Width="379.417">
+             mc:Ignorable="d" Width="374.617" Height="359.2">
     <Grid Margin="0,0,-0.4,0.8" Background="#FF131423">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,9 +25,13 @@
 
         <Grid HorizontalAlignment="Left" Height="70" Margin="10,202,0,0" VerticalAlignment="Top" Width="366"/>
         <Border Background="White"  Padding="1.5" CornerRadius="5" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="145" Margin="188,52,0,0" VerticalAlignment="Top" Width="181">
-            <StackPanel Background="Black"/>
+            <StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/MP3Merger2;component/Resources/notes.JPG"/>
+                </StackPanel.Background>
+            </StackPanel>
         </Border>
-        <Border Margin="10,218,12.2,17.6" Padding="1.5" CornerRadius="5" RenderTransformOrigin="0.5,0.5" Background="White">
+        <Border Margin="10,218,6.4,17.4" Padding="1.5" CornerRadius="5" RenderTransformOrigin="0.5,0.5" Background="White">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -37,7 +40,11 @@
                     <TranslateTransform X="0.27"/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <StackPanel Background="Black" Margin="0.4,0.4,0.4,-0.2"/>
+            <StackPanel Margin="0.4,0.4,0.4,-0.2">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/MP3Merger2;component/Resources/578650fe544c4.jpg"/>
+                </StackPanel.Background>
+            </StackPanel>
         </Border>
         <GroupBox Header="Select MP3 Files to Merge" HorizontalAlignment="Left" Height="153" Margin="10,44,0,0" VerticalAlignment="Top" Width="166" Foreground="#FFD6D6D6" Background="#FF0B0B0B">
             <Image HorizontalAlignment="Left" Height="22" Margin="110,21,0,0" VerticalAlignment="Top" Width="27" OpacityMask="#FF0B0B0B" RenderTransformOrigin="0.644,2.9">
@@ -95,8 +102,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        
-        <Button Content="Mix" HorizontalAlignment="Left" Margin="101,233,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
+
+        <Button Content="Mix" HorizontalAlignment="Left" Margin="103,267,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -110,7 +117,7 @@
             </Button.Background>
         </Button>
         <Separator HorizontalAlignment="Left" Height="100" Margin="10,-20,0,0" VerticalAlignment="Top" Width="354" Background="White"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="195,233,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="Button_Click" >
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="197,267,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="Button_Click" >
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="MP3Merger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MP3Merger2"
+        xmlns:views="clr-namespace:MP3Merger2.Views"
+        mc:Ignorable="d"
+        Title="MP3 Merger" Height="394.4" Width="389.406" ResizeMode="NoResize">
+
+    <Grid>
+        <views:MP3MergerView x:Name = "MP3MergerViewControl" Margin="0,0,0.2,-0.2" />
+    </Grid>
+ 
+</Window>
