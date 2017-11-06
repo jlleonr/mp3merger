@@ -15,7 +15,7 @@ namespace MP3Merger2.Views
         {
             InitializeComponent();
             mp3FilesVMObj = new MP3FilesViewModel();
-            DataContext = mp3FilesVMObj.MP3Files;
+            DataContext = mp3FilesVMObj;
         }
 
         private void selectFileName1_Click(object sender, RoutedEventArgs e)
