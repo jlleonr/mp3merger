@@ -63,7 +63,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="23,69,0,0" TextWrapping="Wrap" Text="File #1:" VerticalAlignment="Top" Height="20" Width="86" Foreground="#FFF6DEDE" FontSize="10" FontFamily="Arial"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,107,0,0" TextWrapping="Wrap" Text="File #2:" VerticalAlignment="Top" Width="86" FontSize="10" FontFamily="Arial" Foreground="#FFF0E6E6"/>
 
-        <Button Content="Select" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="75" Height="17" FontSize="10" x:Name="btn1" Click="btn1_Click">
+        <Button Content="Select" HorizontalAlignment="Left" Margin="23,85,0,0" VerticalAlignment="Top" Width="75" Height="17" FontSize="10" x:Name="btn1" Click="selectFileName1_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -76,7 +76,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Select" HorizontalAlignment="Left" Margin="23,124,0,0" VerticalAlignment="Top" Width="75" FontSize="10" Height="18" x:Name="btn2" Click="btn2_Click">
+        <Button Content="Select" HorizontalAlignment="Left" Margin="23,124,0,0" VerticalAlignment="Top" Width="75" FontSize="10" Height="18" x:Name="btn2" Click="selectFileName2_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -90,7 +90,7 @@
             </Button.Background>
         </Button>
         <TextBlock HorizontalAlignment="Left" Margin="23,147,0,0" TextWrapping="Wrap" Text="Output Dir / Name:" VerticalAlignment="Top" FontFamily="Arial" FontSize="10" Foreground="#FFFFF6F6"/>
-        <Button Content="Output" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" x:Name="btn3" Click="btn3_Click">
+        <Button Content="Output" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" x:Name="btn3" Click="setOutDirBtn_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -104,7 +104,7 @@
             </Button.Background>
         </Button>
 
-        <Button Content="Merge" HorizontalAlignment="Left" Margin="103,267,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="btn4_Click">
+        <Button Content="Merge" HorizontalAlignment="Left" Margin="103,267,0,0" VerticalAlignment="Top" Width="75" FontSize="10" FontFamily="Arial" x:Name="btn4" Height="18" Click="mergeBtn_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -118,7 +118,7 @@
             </Button.Background>
         </Button>
         <Separator HorizontalAlignment="Left" Height="100" Margin="10,-20,0,0" VerticalAlignment="Top" Width="354" Background="White"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="197,267,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="Button_Click" >
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="197,267,0,0" VerticalAlignment="Top" Width="75" Height="18" FontSize="10" FontFamily="Arial" Click="exitButton_Click" >
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -143,13 +143,13 @@
         </Image>
         <Grid x:Name="MP3MergerViewControl">
             <StackPanel Margin="195,85,12.4,256.4" Orientation="Vertical">
-                <TextBox Text=""  HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="17" FontSize="10" x:Name="txtBox1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black" />
+                <TextBox Text="{Binding FileName1}"  IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="17" FontSize="10" x:Name="txtBox1" FontFamily="Arial" Foreground= "Black" Background="White" BorderBrush="Black" />
             </StackPanel>
             <StackPanel Margin="195,124,12.4,216.4" Orientation="Vertical">
-                <TextBox Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="18" FontSize="10"  x:Name="txtBox2" FontFamily="Arial" Foreground="Black" Background="White"/>
+                <TextBox Text="{Binding FileName2}" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Height="18" FontSize="10"  x:Name="txtBox2" FontFamily="Arial" Foreground="Black" Background="White"/>
             </StackPanel>
             <StackPanel Margin="195,164,12.4,176.4" Orientation="Vertical">
-                <TextBox Text="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="10" FontFamily="Arial" x:Name="txtBox3" Foreground="Black" Background="White"/>
+                <TextBox Text="{Binding OutputDirectory}" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.007,0.089" Width="167" Height="18" FontSize="10" FontFamily="Arial" x:Name="txtBox3" Foreground="Black" Background="White"/>
             </StackPanel>
         </Grid>
     </Grid>

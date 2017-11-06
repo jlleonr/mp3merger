@@ -15,38 +15,32 @@ namespace MP3Merger2.Views
         {
             InitializeComponent();
             mp3FilesVMObj = new MP3FilesViewModel();
-            DataContext = mp3FilesVMObj;
-            txtBox1.Text = mp3FilesVMObj.MP3Files.FileName1;
-            txtBox2.Text = mp3FilesVMObj.MP3Files.FileName2;
-            txtBox3.Text = mp3FilesVMObj.MP3Files.OutputDirectory;
+            DataContext = mp3FilesVMObj.MP3Files;
         }
 
-        private void btn1_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void selectFileName1_Click(object sender, RoutedEventArgs e)
         {
 
             mp3FilesVMObj.OnSetFile1();
-            txtBox1.Text = mp3FilesVMObj.MP3Files.FileName1;
         }
 
-        private void btn2_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void selectFileName2_Click(object sender, RoutedEventArgs e)
         {
 
             mp3FilesVMObj.OnSetFile2();
-            txtBox2.Text = mp3FilesVMObj.MP3Files.FileName2;
         }
 
-        private void btn3_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void setOutDirBtn_Click(object sender, RoutedEventArgs e)
         {
             mp3FilesVMObj.OnSetOutDir();
-            txtBox3.Text = mp3FilesVMObj.MP3Files.OutputDirectory;
         }
 
-        private void btn4_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void mergeBtn_Click(object sender, RoutedEventArgs e)
         {
             mp3FilesVMObj.OnMerge();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
         }
