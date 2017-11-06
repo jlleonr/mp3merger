@@ -63,8 +63,6 @@ namespace MP3Merger1.ViewModel
         /// </summary>
         public void OnSetFile1()
         {
-            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            //openFileDialog1.Filter = "MP3 files (*.mp3)|*.mp3";
             if (openFileDialog.ShowDialog() == true)
             {
                 MP3Files.FileName1 = openFileDialog.FileName;
