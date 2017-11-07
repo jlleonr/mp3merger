@@ -9,7 +9,7 @@
 <ol>
   <li> Select two mp3 files using the UI buttons. </li>
   <li> Select the destination folder and file name for the merged audio file. </li>
-  <li> Click on mix. </li>
+  <li> Click on Merge. </li>
 </ol>
 </p>
 
