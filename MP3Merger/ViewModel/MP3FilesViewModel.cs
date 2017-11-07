@@ -12,7 +12,9 @@
 using Microsoft.Win32;
 using MP3Merger1.Model;
 using MP3Merger2.Services;
+using MP3Merger2.ViewModel.Commands;
 using System.Windows;
+using System;
 
 namespace MP3Merger1.ViewModel
 {
@@ -27,6 +29,42 @@ namespace MP3Merger1.ViewModel
         private OpenFileDialog openFileDialog;
 
         public MP3FilesModel MP3Files { get; private set; }
+        public MVCommand MergeCommand { get; set; }
+        public MVCommand SetFile1Command { get; set; }
+        public MVCommand SetFile2Command { get; set; }
+        public MVCommand SetOutDirCommand { get; set; }
+
+        /// <summary>
+        /// Set initial values to the Model properties,
+        /// since they will be binded to the UI the idea is to show
+        /// an initial text in the TextBox.
+        /// </summary>
+        public MP3FilesViewModel()
+        {
+            openFileDialog = new OpenFileDialog()
+            {
+                Filter = "MP3 files (*.mp3)|*.mp3"
+            };
+
+            MP3Files = new MP3FilesModel()
+            {
+                FileName1 = initF1,
+                FileName2 = initF2,
+                OutputDirectory = initOutDir
+            };
+
+            MergeCommand = new MVCommand(OnMerge, CanMerge);
+            SetFile1Command = new MVCommand(OnSetFile1, CanSetProperty);
+            SetFile2Command = new MVCommand(OnSetFile2, CanSetProperty);
+            SetOutDirCommand = new MVCommand(OnSetOutDir, CanSetProperty);
+
+
+        }
+
+        private bool CanSetProperty()
+        {
+            return true;
+        }
 
         private bool ValidPaths()
         {
@@ -41,27 +79,9 @@ namespace MP3Merger1.ViewModel
         }
 
         /// <summary>
-        /// Set initial values to the Model properties,
-        /// since they will be binded to the UI the idea is to show
-        /// an initial text in the TextBox.
-        /// </summary>
-        public MP3FilesViewModel()
-        {
-            MP3Files = new MP3FilesModel()
-            {
-                FileName1 = initF1,
-                FileName2 = initF2,
-                OutputDirectory = initOutDir
-            };
-
-            openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "MP3 files (*.mp3)|*.mp3";
-        }
-
-        /// <summary>
         /// Set path for first mp3 file.
         /// </summary>
-        public void OnSetFile1()
+        private void OnSetFile1()
         {
             if (openFileDialog.ShowDialog() == true)
             {
@@ -77,7 +97,7 @@ namespace MP3Merger1.ViewModel
         /// <summary>
         /// Set path for second mp3 file.
         /// </summary>
-        public void OnSetFile2()
+        private void OnSetFile2()
         {
             if (openFileDialog.ShowDialog() == true)
             {
@@ -93,7 +113,7 @@ namespace MP3Merger1.ViewModel
         /// <summary>
         /// Set output directory.
         /// </summary>
-        public void OnSetOutDir()
+        private void OnSetOutDir()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "MP3 files (*.mp3)|*.mp3";
@@ -101,30 +121,38 @@ namespace MP3Merger1.ViewModel
             saveFileDialog.AddExtension = true;
             if (saveFileDialog.ShowDialog() == true)
             {
-                MP3Files.OutputDirectory = saveFileDialog.FileName;
+                MP3Files.OutputDirectory = saveFileDialog.FileName;               
 
                 if (!ValidPaths())
                 {
                     MP3Files.OutputDirectory = initOutDir;
+                    return;
                 }
+
             }
         }
 
         /// <summary>
         /// Merge the selected files.
         /// </summary>
-        public void OnMerge()
+        private void OnMerge()
         {
+            MergeService.Mp3Merge(MP3Files.FileName1, MP3Files.FileName2, MP3Files.OutputDirectory);
+        }
 
+        /// <summary>
+        /// Check if file can be merged.
+        /// </summary>
+        /// <returns></returns>
+        private bool CanMerge()
+        {
             if ((string.IsNullOrEmpty(MP3Files.FileName1) || MP3Files.FileName1.Equals(initF1))
                 || (string.IsNullOrEmpty(MP3Files.FileName2) || MP3Files.FileName2.Equals(initF2))
                 || (string.IsNullOrEmpty(MP3Files.OutputDirectory) || MP3Files.OutputDirectory.Equals(initOutDir)))
             {
-                MessageBox.Show("Select two mp3 files and an output directory first.");
-                return;
+                return false;
             }
-
-            MergeService.Mp3Merge(MP3Files.FileName1, MP3Files.FileName2, MP3Files.OutputDirectory);
+            return true;
         }
 
     }
